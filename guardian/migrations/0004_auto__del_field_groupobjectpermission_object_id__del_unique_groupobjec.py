@@ -15,10 +15,12 @@ class Migration(SchemaMigration):
         db.alter_column('guardian_userobjectpermission', 'object_pk', self.gf('django.db.models.fields.CharField')(max_length=255))
 
         # Removing unique constraint on 'UserObjectPermission', fields ['object_id', 'user', 'content_type', 'permission']
-        db.delete_unique('guardian_userobjectpermission', ['object_id', 'user_id', 'content_type_id', 'permission_id'])
+        # ##gtp: commented out because it confuses newer mysqls and doesn't get created in 0001 anymore
+        # db.delete_unique('guardian_userobjectpermission', ['object_id', 'user_id', 'content_type_id', 'permission_id'])
 
         # Removing unique constraint on 'GroupObjectPermission', fields ['group', 'object_id', 'content_type', 'permission']
-        db.delete_unique('guardian_groupobjectpermission', ['group_id', 'object_id', 'content_type_id', 'permission_id'])
+        # ##gtp: commented out because it confuses newer mysqls and doesn't get created in 0001 anymore
+        #db.delete_unique('guardian_groupobjectpermission', ['group_id', 'object_id', 'content_type_id', 'permission_id'])
 
         # Deleting field 'GroupObjectPermission.object_id'
         db.delete_column('guardian_groupobjectpermission', 'object_id')

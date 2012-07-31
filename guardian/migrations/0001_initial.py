@@ -19,7 +19,8 @@ class Migration(SchemaMigration):
         db.send_create_signal('guardian', ['UserObjectPermission'])
 
         # Adding unique constraint on 'UserObjectPermission', fields ['user', 'permission', 'content_type', 'object_id']
-        db.create_unique('guardian_userobjectpermission', ['user_id', 'permission_id', 'content_type_id', 'object_id'])
+        # ##gtp: commented out because it confuses newer mysqls and gets removed in 0004 anyway
+        # db.create_unique('guardian_userobjectpermission', ['user_id', 'permission_id', 'content_type_id', 'object_id'])
 
         # Adding model 'GroupObjectPermission'
         db.create_table('guardian_groupobjectpermission', (
@@ -32,7 +33,8 @@ class Migration(SchemaMigration):
         db.send_create_signal('guardian', ['GroupObjectPermission'])
 
         # Adding unique constraint on 'GroupObjectPermission', fields ['group', 'permission', 'content_type', 'object_id']
-        db.create_unique('guardian_groupobjectpermission', ['group_id', 'permission_id', 'content_type_id', 'object_id'])
+        # ##gtp: commented out because it confuses newer mysqls and gets removed in 0004 anyway
+        #db.create_unique('guardian_groupobjectpermission', ['group_id', 'permission_id', 'content_type_id', 'object_id'])
 
 
     def backwards(self, orm):
